@@ -15,5 +15,14 @@
   "bugs": {
     "url": "https://github.com/comp426-2023-spring/a02-functions-sadieamato/issues"
   },
-  "homepage": "https://github.com/comp426-2023-spring/a02-functions-sadieamato#readme"
+  "homepage": "https://github.com/comp426-2023-spring/a02-functions-sadieamato#readme",
+  "dependencies": {
+    "minimist": "^1.2.7",
+    "moment-timezone": "^0.5.40",
+    "node-fetch": "^3.3.0"
+  },"type": "module",
+  "bin": {
+    "galosh.js": "./cli.js"
+  }
+
 }
