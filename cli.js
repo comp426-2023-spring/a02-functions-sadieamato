@@ -18,25 +18,31 @@ if (args.h) {
 // Extract system timezone
 const timezone = moment.tz.guess();
 
-// Convert lat and long arguments to nums with only 2 decimal places
-if (args.n) {
-    var north = args.n.toFixed(2);
-}
-if (args.s) {
-    var south = args.s.toFixed(2);
-}
-if (args.e) {
-    var east = args.e.toFixed(2);
-}
-if (args.w) {
-    var west = args.w.toFixed(2);
-}
-
 // Use timezone args or auto timezone
 if (args.z) {
     var timezone_to_use = args.z;
 } else { var timezone_to_use = timezone; }
 
+// Convert lat and long arguments to nums with only 2 decimal places
+if (args.n) {
+    var north = Math.round((args.n + Number.EPSILON) * 100) / 100;
+}
+if (args.s) {
+    var south = Math.round((args.s + Number.EPSILON) * 100) / 100;
+}
+if (args.e) {
+    var east = Math.round((args.e + Number.EPSILON) * 100) / 100;
+}
+if (args.w) {
+    var west = Math.round((args.w + Number.EPSILON) * 100) / 100;
+}
+
+
+// If we do not have a lat and long measure
+if (!((north && east) || (north && west) || (south && east) || (south && west))) {
+    console.log('Latitude must be in range')
+    process.exit(0);
+}
 
 // Make a request
 if (args.n && args.e) {
@@ -50,10 +56,10 @@ if (args.n && args.e) {
 }
 
 // Get the data from the request, print it if -j was used
-var data = await response.json();
+const data = await response.json();
 if (args.j) {
     console.log(data);
-    process.exit();
+    process.exit(0);
 }
 
 // Create phrase for day we're looking for
