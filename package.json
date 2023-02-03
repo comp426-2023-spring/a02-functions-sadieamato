@@ -2,7 +2,7 @@
   "name": "a02-functions-sadieamato",
   "version": "1.0.0",
   "description": "\"Installable command line utility\"",
-  "main": "index.js",
+  "main": "cli.js",
   "scripts": {
     "test": "node cli.js -n 35.92 -w 79.05 -z America/New_York"
   },
@@ -20,9 +20,9 @@
     "minimist": "^1.2.7",
     "moment-timezone": "^0.5.40",
     "node-fetch": "^3.3.0"
-  },"type": "module",
+  },
   "bin": {
     "galosh.js": "./cli.js"
-  }
-
+  },
+  "type": "module"
 }
